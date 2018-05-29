@@ -10,19 +10,23 @@ namespace Perceptron
         static void Main(string[] args)
         {
             var n = 100;
-            var numOfRuns = 10000;
+            var numOfRuns = 1000;
 
-            var total = 0;
+            var totalIterations = 0;
+            var totalProbability = 0.0;
 
             for (int i = 0; i < numOfRuns; i++)
             {
-                total += Run(n);
+                var run = Run(n);
+                totalIterations += run.Item1;
+                totalProbability += run.Item2;
             }
 
-            Console.WriteLine(total / (double)numOfRuns);
+            Console.WriteLine(totalIterations / (double)numOfRuns);
+            Console.WriteLine(totalProbability / numOfRuns);
         }
 
-        private static int Run(int n)
+        private static Tuple<int, double> Run(int n)
         {
             var a = GetRandomPoint();
             var b = GetRandomPoint();
@@ -66,19 +70,28 @@ namespace Perceptron
                 }
             }
 
-            return numberOfIterations;
+            return new Tuple<int, double>(numberOfIterations, P(a, b, w));
         }
 
-        //public static double P(Point a, Point b, double[] w)
-        //{
-        //    for (int i = 0; i < 1000; i++)
-        //    {
-        //        var c = GetRandomPoint();
-        //        var sign = SideOfTheLine(a, b, c);
+        public static double P(Point a, Point b, double[] w)
+        {
+            var numOfTrials = 1000;
+            var numOfEquals = 0;
 
-        //        GetSign(w[0] + w[1] * data[i].Item1.X + w[2] * data[i].Item1.Y);
-        //    }
-        //}
+            for (int i = 0; i < numOfTrials; i++)
+            {
+                var c = GetRandomPoint();
+                var fSign = SideOfTheLine(a, b, c);
+                var gSign = GetSign(w[0] + w[1] * c.X + w[2] * c.Y);
+
+                if (fSign == gSign)
+                {
+                    numOfEquals++;
+                }
+            }
+
+            return numOfEquals / (double)numOfTrials;
+        }
 
         private static Sign SideOfTheLine(Point a, Point b, Point c)
         {
