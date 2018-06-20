@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1E5BF759-6157-4E6C-B74B-5E4711D5B66C}</ProjectGuid>
+    <ProjectGuid>{E8689FAD-39D7-4EBE-99FD-57FFD0C9AC7F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Perceptron</RootNamespace>
-    <AssemblyName>Perceptron</AssemblyName>
+    <RootNamespace>HoeffdingInequality</RootNamespace>
+    <AssemblyName>HoeffdingInequality</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -30,9 +30,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>Perceptron.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
